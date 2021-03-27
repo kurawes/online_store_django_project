@@ -1,2 +1,2 @@
-django
-pytest
+Django==3.1.7
+pytest==6.2.2

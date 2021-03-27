@@ -1,2 +1,2 @@
-# online_store_django_project
+# Django project - online store
 Final project for the SDA course

@@ -11,4 +11,4 @@ source venv/Scripts/activate
 python -m pip install -U pip
 pip install -r requirements.txt
 
-django-admin startproject online_store .
+# django-admin startproject online_store .

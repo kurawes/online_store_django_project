@@ -15,9 +15,16 @@ def contact_page_view(request):
 
 
 def shop_view(request):
-    # dictionary for initial data
-    context = {}
-
-    # fill the dictionary during Internationalization
-    context["products"] = Product.objects.all()
+    # dictionary for data
+    context = {"products": Product.objects.all()}
     return render(request, 'shop.html', context)
+
+
+def category_view(request):
+    context = {"categories": Category.objects.all()}
+    return render(request, 'category_list.html', context)
+
+
+def product_type_view(request):
+    context = {"product_types": ProductType.objects.all()}
+    return render(request, 'product_type_list.html', context)

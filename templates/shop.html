@@ -31,7 +31,8 @@
                     </tr>
                 {% endfor %}
             </table>
-            <a class="btn btn-success" href="#">Category list</a>
+            <a class="btn btn-success" href="{% url 'category_list' %}">Category list</a>
+            <a class="btn btn-success" href="{% url 'product_type_list' %}">Product type list</a>
             <a class="btn btn-success" href="#">Product list</a>
         </div>
     {% endblock %}

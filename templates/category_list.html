@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+    {% block style %}
+    {% endblock %}
+
+    {% block title %}
+        Category list
+    {% endblock %}
+
+    {% block content %}
+        <br>
+        <h2> Category list</h2>
+
+        <div class="product_list">
+            <table class="table">
+                <tr>
+                    <th>PK</th>
+                    <th>Name</th>
+                </tr>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{ category.pk }}</td>
+                        <td>{{ category.name }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a class="btn btn-success" href="#">Add category</a>
+            <a class="btn btn-success" href="#">Edit category</a>
+            <a class="btn btn-success" href="#">Delete category</a>
+        </div>
+    {% endblock %}

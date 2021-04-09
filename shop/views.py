@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DeleteView, CreateView
 
 from .models import Product, ProductType, Category
 
@@ -32,16 +33,23 @@ def product_type_view(request):
     return render(request, 'product_type_list.html', context)
 
 
-def category_delete_view(request, primary_key):
-    # dictionary for initial data, field names as keys
-    context = {}
-    # fetch the object with the passed primary_key
-    obj = get_object_or_404(Category, id=primary_key)
+class CategoryDeleteView(DeleteView):
+    model = Category
+    template_name = 'category_delete.html'
+    context_object_name = 'category'
+    success_url = reverse_lazy('category_list')
 
-    if request.method == "POST":
-        # delete the object
-        obj.delete()
-        # redirect back to previous page
-        return reverse_lazy('category_list.html')
 
-    return render(request, 'category_delete.html', context)
+class CategoryUpdateView(UpdateView):
+    model = Category
+    template_name = 'category_edit.html'
+    context_object_name = 'category'
+    fields = '__all__'
+    success_url = reverse_lazy('category_list')
+
+
+class CategoryCreateView(CreateView):
+    model = Category
+    template_name = 'category_create.html'
+    fields = '__all__'
+    success_url = reverse_lazy('category_list')

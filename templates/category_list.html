@@ -17,16 +17,20 @@
                 <tr>
                     <th>PK</th>
                     <th>Name</th>
+                    <th> </th>
                 </tr>
                 {% for category in categories %}
                     <tr>
                         <td>{{ category.pk }}</td>
                         <td>{{ category.name }}</td>
+                        <td><a class="btn btn-primary btn-sm" href="{% url 'category_update' category.pk %}">Update category</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'category_delete' category.pk %}">Delete category</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
-            <a class="btn btn-success" href="#">Add category</a>
+            <a class="btn btn-success" href="{% url 'category_create' %}">Add category</a>
             <a class="btn btn-success" href="#">Edit category</a>
-            <a class="btn btn-success" href="{% url '' %}">Delete category</a>
+            <a class="btn btn-success" href="#">Delete category</a>
         </div>
     {% endblock %}

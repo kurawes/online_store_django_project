@@ -28,11 +28,6 @@ def category_view(request):
     return render(request, 'category_list.html', context)
 
 
-def product_type_view(request):
-    context = {"product_types": ProductType.objects.all()}
-    return render(request, 'product_type_list.html', context)
-
-
 class CategoryDeleteView(DeleteView):
     model = Category
     template_name = 'category_delete.html'
@@ -53,3 +48,30 @@ class CategoryCreateView(CreateView):
     template_name = 'category_create.html'
     fields = '__all__'
     success_url = reverse_lazy('category_list')
+
+
+def product_type_view(request):
+    context = {"product_types": ProductType.objects.all()}
+    return render(request, 'product_type_list.html', context)
+
+
+class PTDeleteView(DeleteView):
+    model = ProductType
+    template_name = 'product_type_delete.html'
+    context_object_name = 'product_type'
+    success_url = reverse_lazy('product_type_list')
+
+
+class PTUpdateView(UpdateView):
+    model = ProductType
+    template_name = 'product_type_edit.html'
+    context_object_name = 'product_type'
+    fields = '__all__'
+    success_url = reverse_lazy('product_type_list')
+
+
+class PTCreateView(CreateView):
+    model = ProductType
+    template_name = 'product_type_create.html'
+    fields = '__all__'
+    success_url = reverse_lazy('product_type_list')

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+    {% block style %}
+    {% endblock %}
+
+    {% block title %}
+        Shop
+    {% endblock %}
+
+    {% block content %}
+        <br>
+        <h2> Shop page</h2>
+
+        <div class="product_list">
+            <table class="table">
+                <tr>
+                    <th>PK</th>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                </tr>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.pk }}</td>
+                        <td><img src="{{ BASE_DIR }}/{{ product.picture }}" width="20"/></td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.category.name }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a class="btn btn-success" href="{% url 'category_list' %}">Category list</a>
+            <a class="btn btn-success" href="{% url 'product_type_list' %}">Product type list</a>
+            <a class="btn btn-success" href="{% url 'product_list' %}">Product list</a>
+        </div>
+    {% endblock %}

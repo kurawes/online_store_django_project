@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, DeleteView, CreateView
+from django.views.generic import UpdateView, DeleteView, CreateView, DetailView
 
 from .models import Product, ProductType, Category
 
@@ -75,3 +75,36 @@ class PTCreateView(CreateView):
     template_name = 'product_type_create.html'
     fields = '__all__'
     success_url = reverse_lazy('product_type_list')
+
+
+def product_view(request):
+    context = {"products": Product.objects.all()}
+    return render(request, 'product_list.html', context)
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'product_detail.html'
+    context_object_name = 'product'
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'product_delete.html'
+    context_object_name = 'product'
+    success_url = reverse_lazy('product_list')
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    template_name = 'product_edit.html'
+    context_object_name = 'product'
+    fields = '__all__'
+    success_url = reverse_lazy('product_list')
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'product_create.html'
+    fields = '__all__'
+    success_url = reverse_lazy('product_list')

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+    {% block title %}
+        Edit product
+    {% endblock %}
+
+
+  {% block content %}
+
+<h2>Edit product</h2>
+
+    <div class="form_update">
+
+        <form action="" method="post">
+        {% csrf_token %}
+        {# Next line automatically generates form based on model and puts them in paragraphs. #}
+        {{ form.as_p }}
+        <a class="btn btn-default" href="{% url 'product_detail' product.pk %}">Cancel</a>
+        <input class="btn btn-success" type="submit" value="Update"/>
+        </form>
+
+    </div>
+
+  {% endblock %}

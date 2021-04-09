@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+    {% block style %}
+    {% endblock %}
+
+    {% block title %}
+        Product type list
+    {% endblock %}
+
+    {% block content %}
+        <br>
+        <h2> Product type list</h2>
+
+        <div class="product_list">
+            <table class="table">
+                <tr>
+                    <th>PK</th>
+                    <th>Name</th>
+                    <th> </th>
+                </tr>
+                {% for p_type in product_types %}
+                    <tr>
+                        <td>{{ p_type.pk }}</td>
+                        <td>{{ p_type.name }}</td>
+                        <td><a class="btn btn-primary btn-sm" href="{% url 'product_type_update' p_type.pk %}">
+                            Update product type</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'product_type_delete' p_type.pk %}">
+                            Delete product type</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a class="btn btn-success" href="{% url 'product_type_create' %}">Add product type</a>
+            <a class="btn btn-success" href="#">Edit product type</a>
+            <a class="btn btn-success" href="#">Delete product type</a>
+        </div>
+    {% endblock %}

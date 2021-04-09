@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+    {% block title %}
+        Product details
+    {% endblock %}
+
+
+  {% block content %}
+
+<h1>Product details</h1>
+
+    <div class="form_input">
+
+        <p>PK: {{ product.pk }}</p>
+        <p>Name: {{ product.name }}</p>
+        <p>Description: {{ product.description }}</p>
+        <p>Picture: {{ product.picture }}</p>
+        <p>Availability: {{ product.availability }}</p>
+        <p>Price: {{ product.price }}</p>
+        <p>Product type: {{ product.product_type.name }}</p>
+        <p>Category: {{ product.category.name }}</p>
+
+        <br>
+        <a class="btn btn-default" href="{% url 'product_list' %}">Back</a>
+        <a class="btn btn-primary" href="{% url 'product_update' product.pk %}">Update product</a>
+        <a class="btn btn-danger" href="{% url 'product_delete' product.pk %}">Delete product</a>
+
+    </div>
+
+  {% endblock %}

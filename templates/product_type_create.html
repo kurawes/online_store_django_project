@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+  {% block style %}
+  {% endblock %}
+
+    {% block title %}
+        Add product type
+    {% endblock %}
+
+  {% block content %}
+      <br>
+      <h2>Add product type</h2>
+
+    <div class="form_input">
+    <form action="" method="post"> {% csrf_token %}
+        {{ form.as_p }}
+        <a class="btn btn-default" href="{% url 'product_type_list' %}">Cancel</a>
+        <input class="btn btn-success" type="submit" value="Create"/>
+    </form>
+    </div>
+
+  {% endblock %}

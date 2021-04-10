@@ -40,3 +40,13 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'product_detail.html'
     context_object_name = 'product'
+
+
+def search_results(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        products = Product.objects.filter(name__contains=searched)
+        return render(request, 'search_results.html', {'searched': searched, 'products': products})
+    else:
+        return render(request, 'search_results.html', {})
+

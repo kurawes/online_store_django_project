@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ product.pk }}</td>
                 <td><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></td>
-                <td>{{ product.picture }}</td>
+                <td><img src="{{ product.picture.url }}" width="30"/></td>
                 <td>{{ product.availability }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.product_type.name }}</td>
@@ -33,7 +33,7 @@
             </tr>
         {% endfor %}
     </table>
-    <a class="btn btn-success" href="{% url 'product_create' %}">Add product</a>
+    <a class="btn btn-success" href="{% url 'shop' %}">Back</a>
 </div>
 
 

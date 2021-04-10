@@ -24,7 +24,7 @@
                 {% for product in products %}
                     <tr>
                         <td>{{ product.pk }}</td>
-                        <td><img src="{{ BASE_DIR }}/{{ product.picture }}" width="20"/></td>
+                        <td><img src="{{ product.picture.url }}" width="20"/></td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}</td>
                         <td>{{ product.category.name }}</td>

@@ -31,7 +31,7 @@ class Product(models.Model):
     ]
     name = models.CharField(max_length=75)
     description = models.TextField()
-    picture = models.ImageField(upload_to='pictures/')
+    picture = models.ImageField(upload_to='static/img/')
     availability = models.CharField(max_length=13, choices=AVAILABILITY, default=AVAILABLE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     product_type = models.ForeignKey(ProductType, on_delete=models.DO_NOTHING)

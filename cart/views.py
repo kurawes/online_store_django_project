@@ -1,20 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Cart
-
-
-def cart_create(user=None):
-    cart_obj = Cart.objects.create(user=None)
-    print("New Cart created")
-    return cart_obj
+from shop.models import Product
 
 
 def cart_home(request):
-    cart_id = request.session.get("cart_id", None)
-    queryset = Cart.objects.filter(id=cart_id)
-    if queryset.count() == 1:
-        print("Card Id exists")
-        cart_obj = queryset.first()
-    else:
-        cart_obj = cart_create()
-        request.session['cart_id'] = cart_obj.id
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
+    products = cart_obj.products.all()
+    total = 0
+    for x in products:
+        total += x.price
+    print(total)
+    cart_obj.total = total
+    cart_obj.save()
     return render(request, "cart_home.html", {})
+
+
+def cart_update(request):
+    product_id = 1
+    product_obj = Product.objects.get(id=product_id)
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
+    cart_obj.products.add(product_obj)
+    # cart_obj.products.remove(product_obj)
+    return redirect('/cart')

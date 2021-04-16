@@ -24,6 +24,20 @@ def product_info(request, slug):
     return render(request, 'product_info.html', {"product": product})
 
 
+def pt_list(request, product_type_slug):
+    product_type = get_object_or_404(ProductType, slug=product_type_slug)
+    products = Product.objects.filter(product_type=product_type)
+    return render(request, 'pt_list.html', {'product_type': product_type, 'products': products})
+
+
+# this gives some error message - The QuerySet value for an exact lookup must be limited to one result using slicing.
+def cat_list(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    product_type = ProductType.objects.filter(category=category)
+    products = Product.objects.filter(product_type=product_type)
+    return render(request, 'cat_list.html', {'category': category, 'product_type': product_type, 'products': products})
+
+
 # ----------------------------------------------------
 def home_page_view(request):
     return render(request, 'home.html')

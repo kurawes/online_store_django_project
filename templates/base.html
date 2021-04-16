@@ -61,14 +61,14 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
+                Product types
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">All</a></li>
+                <li><a class="dropdown-item" href="{% url 'shop:all_products' %}">All</a></li>
 
                   {% for pt in product_types %}
 
-                <li><a class="dropdown-item" href="#">{{ pt.name|title }}</a></li>
+                <li><a class="dropdown-item" href="{{ pt.get_absolute_url }}">{{ pt.name|title }}</a></li>
 
                   {% endfor %}
 

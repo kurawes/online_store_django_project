@@ -3,20 +3,10 @@ from django.views.generic import DetailView
 from .models import Product, ProductType, Category
 
 
-# in reference video home.html
+# shows all the products that are active
 def all_products(request):
-    products = Product.objects.all()
+    products = Product.products.all()
     return render(request, 'all_products.html', {'products': products})
-
-
-# to see all the categories everywhere, add to settings.py TEMPLATES
-def categories(request):
-    return {"categories": Category.objects.all()}
-
-
-# to see all the product types everywhere, add to settings.py TEMPLATES
-def product_types(request):
-    return {"product_types": ProductType.objects.all()}
 
 
 def product_info(request, slug):

@@ -34,6 +34,11 @@ class ProductType(models.Model):
         return self.name
 
 
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(in_active=True)
+
+
 class Product(models.Model):
     AVAILABLE = "Available"
     NOT_AVAILABLE = "Not Available"
@@ -59,6 +64,7 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
     objects = models.Manager()
+    products = ProductManager()
 
     class Meta:
         verbose_name_plural = 'products'

@@ -1,8 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView
 from .models import Product, ProductType, Category
 
 
+# in reference video home.html
+def all_products(request):
+    products = Product.objects.all()
+    return render(request, 'all_products.html', {'products': products})
+
+
+# to see all the categories everywhere, add to settings.py TEMPLATES
+def categories(request):
+    return {"categories": Category.objects.all()}
+
+
+# to see all the product types everywhere, add to settings.py TEMPLATES
+def product_types(request):
+    return {"product_types": ProductType.objects.all()}
+
+
+def product_info(request, slug):
+    product = get_object_or_404(Product, slug=slug, in_stock=True)
+    return render(request, 'product_info.html', {"product": product})
+
+
+# ----------------------------------------------------
 def home_page_view(request):
     return render(request, 'home.html')
 

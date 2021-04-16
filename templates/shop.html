@@ -33,8 +33,8 @@
                     </tr>
                 {% endfor %}
             </table>
-            <a class="btn btn-success" href="{% url 'category_list' %}">Category list</a>
-            <a class="btn btn-success" href="{% url 'product_type_list' %}">Product type list</a>
-            <a class="btn btn-success" href="{% url 'product_list' %}">Product list</a>
+            <a class="btn btn-success" href="{% url 'shop:category_list' %}">Category list</a>
+            <a class="btn btn-success" href="{% url 'shop:product_type_list' %}">Product type list</a>
+            <a class="btn btn-success" href="{% url 'shop:product_list' %}">Product list</a>
         </div>
     {% endblock %}

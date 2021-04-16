@@ -3,25 +3,29 @@ from django.views.generic import DetailView
 from .models import Product, ProductType, Category
 
 
-# in reference video home.html
+# shows all the products that are active
 def all_products(request):
-    products = Product.objects.all()
+    products = Product.products.all()
     return render(request, 'all_products.html', {'products': products})
-
-
-# to see all the categories everywhere, add to settings.py TEMPLATES
-def categories(request):
-    return {"categories": Category.objects.all()}
-
-
-# to see all the product types everywhere, add to settings.py TEMPLATES
-def product_types(request):
-    return {"product_types": ProductType.objects.all()}
 
 
 def product_info(request, slug):
     product = get_object_or_404(Product, slug=slug, in_stock=True)
     return render(request, 'product_info.html', {"product": product})
+
+
+def pt_list(request, product_type_slug):
+    product_type = get_object_or_404(ProductType, slug=product_type_slug)
+    products = Product.objects.filter(product_type=product_type)
+    return render(request, 'pt_list.html', {'product_type': product_type, 'products': products})
+
+
+# this gives some error message - The QuerySet value for an exact lookup must be limited to one result using slicing.
+def cat_list(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    product_type = ProductType.objects.filter(category=category)
+    products = Product.objects.filter(product_type=product_type)
+    return render(request, 'cat_list.html', {'category': category, 'product_type': product_type, 'products': products})
 
 
 # ----------------------------------------------------

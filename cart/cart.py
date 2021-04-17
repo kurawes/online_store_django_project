@@ -2,7 +2,7 @@ from shop.models import Product
 from decimal import Decimal
 
 
-class Cart():
+class Cart:
     """
     A base Cart class for some default behaviour that can be overridden if necessary.
     """
@@ -52,13 +52,21 @@ class Cart():
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
 
+    def update(self, product, qty):
+        """
+        Update values in session data
+        """
+        product_id = str(product)
+        if product_id in self.cart:
+            self.cart[product_id]['qty'] = qty
+        self.save()
+
     def delete(self, product):
         """
         Delete item from session data
         """
         product_id = str(product)
         if product_id in self.cart:
-            print(product_id)
             del self.cart[product_id]
             self.save()
 

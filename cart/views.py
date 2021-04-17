@@ -14,7 +14,7 @@ def cart_add(request):
     cart = Cart(request)
     if request.POST.get('action') == 'post':
         product_id = int(request.POST.get('product_id'))
-        product_qty = request.POST.get('product_qty')
+        product_qty = int(request.POST.get('product_qty'))
         product = get_object_or_404(Product, id=product_id)
         cart.add(product=product, qty=product_qty)
 
@@ -28,6 +28,19 @@ def cart_delete(request):
     if request.POST.get('action') == 'post':
         product_id = int(request.POST.get('product_id'))
         cart.delete(product=product_id)
+
+        cart_qty = cart.__len__()
+        cart_total = cart.get_total_price()
+        response = JsonResponse({'qty': cart_qty, 'subtotal': cart_total})
+        return response
+
+
+def cart_update(request):
+    cart = Cart(request)
+    if request.POST.get('action') == 'post':
+        product_id = int(request.POST.get('product_id'))
+        product_qty = int(request.POST.get('product_qty'))
+        cart.update(product=product_id, qty=product_qty)
 
         cart_qty = cart.__len__()
         cart_total = cart.get_total_price()

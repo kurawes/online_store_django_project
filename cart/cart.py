@@ -22,7 +22,8 @@ class Cart():
         if product_id not in self.cart:
             self.cart[product_id] = {"price": str(product.price), "qty": int(qty)}
 
-        self.session.modified = True   # tells django explicitly that the session has been modified
+        # self.session.modified = True   # tells django explicitly that the session has been modified
+        self.save()     # does the same thing, but through a function for less repeating
 
     def __iter__(self):
         """"
@@ -50,3 +51,16 @@ class Cart():
 
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values())
+
+    def delete(self, product):
+        """
+        Delete item from session data
+        """
+        product_id = str(product)
+        if product_id in self.cart:
+            print(product_id)
+            del self.cart[product_id]
+            self.save()
+
+    def save(self):
+        self.session.modified = True

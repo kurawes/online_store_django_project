@@ -19,7 +19,7 @@
                     <th>Picture</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Category</th>
+                    <th></th>
                 </tr>
                 {% for product in products %}
                     <tr>
@@ -27,12 +27,12 @@
                         <td><img src="{{ product.picture.url }}" width="20"/></td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}</td>
-                        <td>{{ product.category.name }}</td>
+                        <td><a id="add-button" value="{{ product.id }}" class="btn btn-outline-info btn-sm" href="#">Add to cart</a></td>
                     </tr>
                 {% endfor %}
             </table>
-            <a class="btn btn-success" href="{% url 'category_list' %}">Category list</a>
-            <a class="btn btn-success" href="{% url 'product_type_list' %}">Product type list</a>
-            <a class="btn btn-success" href="{% url 'product_list' %}">Product list</a>
+            <a class="btn btn-success" href="{% url 'shop:category_list' %}">Category list</a>
+            <a class="btn btn-success" href="{% url 'shop:product_type_list' %}">Product type list</a>
+            <a class="btn btn-success" href="{% url 'shop:product_list' %}">Product list</a>
         </div>
     {% endblock %}

@@ -19,7 +19,6 @@
                     <th>Picture</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Category</th>
                     <th></th>
                 </tr>
                 {% for product in products %}
@@ -28,8 +27,7 @@
                         <td><img src="{{ product.picture.url }}" width="20"/></td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}</td>
-                        <td>{{ product.category.name }}</td>
-                        <td><a class="btn btn-outline-info btn-sm" href="#">Add to cart</a></td>
+                        <td><a id="add-button" value="{{ product.id }}" class="btn btn-outline-info btn-sm" href="#">Add to cart</a></td>
                     </tr>
                 {% endfor %}
             </table>

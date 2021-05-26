@@ -23,7 +23,7 @@ class Cart:
         if product_id in self.cart:
             self.cart[product_id]["qty"] = qty  # if product already in the basket, just update quantity
         else:
-            self.cart[product_id] = {"price": str(product.price), "qty": int(qty)}  # else add item to the cart and save it
+            self.cart[product_id] = {"price": str(product.price), "qty": int(qty)}  # else add item to cart and save it
 
         # self.session.modified = True   # tells django explicitly that the session has been modified
         self.save()     # does the same thing, but through a function for less repeating
